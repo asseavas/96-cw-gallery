@@ -8,6 +8,7 @@ import { selectUser } from './features/users/usersSlice';
 import { useAppSelector } from './app/hooks';
 import Error404 from './UI/errors/Error404';
 import NewPhoto from './features/photos/NewPhoto';
+import Photos from './features/photos/Photos';
 
 const App = () => {
   const user = useAppSelector(selectUser);
@@ -23,6 +24,8 @@ const App = () => {
       )}
       <Container maxWidth="xl" component="main">
         <Routes>
+          <Route path="/" element={<Photos />} />
+          <Route path="/photos/:user" element={<Photos />} />
           <Route
             path="/photos/new"
             element={

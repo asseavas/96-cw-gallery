@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { PhotoMutation } from '../../../types';
-import { Grid2, TextField } from '@mui/material';
+import { FormHelperText, Grid2, TextField } from '@mui/material';
 import FileInput from '../../../UI/FileInput/FileInput';
 import { LoadingButton } from '@mui/lab';
 import SaveIcon from '@mui/icons-material/Save';
@@ -22,6 +22,11 @@ const PhotoForm: React.FC<Props> = ({ onSubmit, isLoading }) => {
 
     if (!state.title.trim()) {
       setError('Title cannot be empty or just whitespace.');
+      return;
+    }
+
+    if (!state.image) {
+      setError('Image is required.');
       return;
     }
 
@@ -68,6 +73,7 @@ const PhotoForm: React.FC<Props> = ({ onSubmit, isLoading }) => {
       </Grid2>
       <Grid2 width="100%">
         <FileInput label="Image" name="image" onChange={fileInputChangeHandler} />
+        {error && !state.image && <FormHelperText error>{error}</FormHelperText>}
       </Grid2>
       <Grid2 width="100%">
         <LoadingButton

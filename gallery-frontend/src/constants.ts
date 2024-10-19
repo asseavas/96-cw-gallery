@@ -34,11 +34,11 @@ export const CardItem = styled(Box)({
 
 export const style = {
   position: 'absolute',
-  top: '45%',
+  top: '48%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 1100,
-  height: 'auto',
+  height: 650,
   backgroundColor: 'white',
   boxShadow: 24,
   borderRadius: '15px',
