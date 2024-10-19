@@ -1,4 +1,10 @@
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
+
+export interface PhotoMutation {
+  user: Types.ObjectId;
+  title: string;
+  image: string;
+}
 
 export interface UserFields {
   username: string;
