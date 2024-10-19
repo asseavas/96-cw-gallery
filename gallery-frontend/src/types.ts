@@ -1,3 +1,18 @@
+export interface Photo {
+  _id: string;
+  user: {
+    _id: string;
+    displayName: string;
+  };
+  title: string;
+  image: string;
+}
+
+export interface PhotoMutation {
+  title: string;
+  image: File | null;
+}
+
 export interface RegisterMutation {
   username: string;
   displayName: string;

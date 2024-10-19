@@ -45,7 +45,7 @@ const UserMenu: React.FC<Props> = ({ user }) => {
           <Tooltip title="Your gallery">
             <Button
               component={Link}
-              to="/photos/user"
+              to={`/photos/${user._id}`}
               sx={{
                 color: 'white',
                 textTransform: 'none',

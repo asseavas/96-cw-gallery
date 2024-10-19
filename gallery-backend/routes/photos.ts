@@ -3,13 +3,17 @@ import mongoose from 'mongoose';
 import { imagesUpload } from '../multer';
 import auth, { RequestWithUser } from '../middleware/auth';
 import Photo from '../models/Photo';
-import permit from '../middleware/permit';
 
 const photosRouter = express.Router();
 
 photosRouter.get('/', async (req, res, next) => {
   try {
-    const photos = await Photo.find();
+    const filter: Record<string, unknown> = {};
+
+    if (req.query.user) {
+      filter.user = req.query.user;
+    }
+    const photos = await Photo.find(filter).populate('user', 'displayName');
     return res.send(photos);
   } catch (error) {
     return next(error);
@@ -34,7 +38,7 @@ photosRouter.post('/', auth, imagesUpload.single('image'), async (req: RequestWi
   }
 });
 
-photosRouter.delete('/:id', auth, permit('admin'), async (req: RequestWithUser, res, next) => {
+photosRouter.delete('/:id', auth, async (req: RequestWithUser, res, next) => {
   try {
     const { id } = req.params;
 
